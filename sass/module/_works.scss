@@ -1,0 +1,169 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+.works {
+  min-width: 320px;
+  width: vp.convertVw(1152px, 1280px);
+  margin: 0 auto;
+  
+}
+
+.section-title.border{
+    border-left: solid 1px var.$colorGray;
+    .section-title {
+      &.js_target {
+        opacity: 0;
+        transition: 2s;
+        &.show {
+          opacity: 1;
+        }
+     }
+  }
+  .sub-title {
+    margin-bottom: vp.convertVw(34px, 1280px);
+    @include sp.sitePaddingBase(212px, 0px, 0px, 0px);
+    font-size: calc(0.625rem + ((1vw - 3.75px) * 1.547)); //10~24
+    font-family: 'objectivebold_italic';
+    color: var.$colorMain;
+  }
+}
+
+.works-contents {
+  .works-content {
+    border-left: solid 1px var.$colorGray;
+    &:first-child {
+      @include sp.sitePaddingBase(92px, 0px, 0px, 0px);
+    }
+    &:not(:first-child) {
+      @include sp.sitePaddingBase(158px, 0px, 0px, 0px);
+    }
+    &:last-child {
+      text-align: justify;
+      @include sp.sitePaddingBase(122px, 171px, 97px, 171px);
+    }
+    &__item {
+      position: relative;
+      display: flex;
+      gap: vp.convertVw(28px, 1280px);
+      @include sp.sitePaddingBase(0px, 64px, 0px, 64px);
+      @include madia.deviceBreakPointMax(600px) {
+        flex-direction: column;
+      }
+      &-box {
+        &.js_target {
+          opacity: 0;
+          transform: translateY(50px);
+          transition: 1s;
+          &.show {
+            opacity: 1;
+            transform: none;
+          }
+        }
+      }
+      &:not(:first-child) {
+        @include sp.sitePaddingBase(0px, 64px, 0px, 64px);
+      }
+      &-box:nth-child(odd)::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: vp.convertVw(50px, 1280px);
+        height: vp.convertVh(50px, 1280px);
+        transform: translate(-178%, -50%);
+        border-radius: 50%;
+        background-color: var.$colorMain;
+      }
+      &-box:nth-child(odd)::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: vp.convertVw(18px, 1280px);
+        height: vp.convertVh(18px, 1280px);
+        transform: translate(-407%, -50%);
+        border-radius: 50%;
+        background-color: var.$colorWhite;
+      }
+      &-box:nth-child(odd) {
+        position: relative;
+        min-width: 146px;
+        min-height: 98px;
+        width: vp.convertVw(497px, 1280px);
+        height: vp.convertVh(335px, 1280px);
+        background-color: #DEDEDE;
+        @include madia.deviceBreakPointMax(600px) {
+          min-height: 157px;
+          width: 100%;
+          height: vp.convertVh(157px, 375px);
+        }
+      }
+      &-box__inner:nth-child(odd) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+        width: 100%;
+        transform: translate(-50%, -50%);
+        font-size: calc(0.875rem + ((1vw - 3.75px) * 2.4309)); //14~36
+        font-family: 'objectivebold_italic';
+        @include madia.deviceBreakPointMax(600px) {
+          font-size: 1.4rem;
+        }
+      }
+      &-box:nth-child(even) {
+        width: vp.convertVw(501px, 1280px);
+        @include madia.deviceBreakPointMax(600px) {
+          flex: 1;
+          width: auto;
+        }
+      }
+      &-box__time
+       {
+        font-size: calc(0.8125rem + ((1vw - 3.75px) * 2.0994)); //13~32
+        font-family: 'objectivemedium';
+        color: var.$colorDarkGray;
+        @include madia.deviceBreakPointMax(600px) {
+          font-size: 1.3rem;
+        }
+      }
+      &-box__text {
+        margin-top: vp.convertVw(29px, 1280px);
+        line-height: 2;
+        font-size: var.$FontSizeSmall; //8~20
+        @include fn.fontNotoMedium;
+        color: var.$colorDarkGray;
+        @include madia.deviceBreakPointMax(600px) {
+          font-size: 1.2rem;
+        }
+      }
+    }
+    
+    .h4-wk {
+      font-size: calc(0.8125rem + ((1vw - 3.75px) * 2.0994)); //13~32
+      font-family: noto-sans-cjk-jp,sans-serif;
+      font-weight: 500;
+      font-style: normal;
+      color: var.$colorDarkGray;
+    }
+    
+    .works-content-l {
+      &.js_target {
+        opacity: 0;
+        transition: 1.5s;
+        &.show {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    }
+  }
+}

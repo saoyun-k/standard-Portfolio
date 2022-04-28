@@ -1,0 +1,59 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+.header {
+  display: flex;
+  justify-content: center;
+  &-logo {
+    position: absolute;
+    top: 5%;
+    left: 3%;
+    .logo {
+      letter-spacing: .05em;
+      font-size: calc(1.0625rem + ((1vw - 3.75px) * 2.7624)); //17~42
+      font-family: 'objectivebold';
+      color: var.$colorWhite;
+      &.js_target_h {
+        opacity: 0;
+        transition: 1s;
+        &.show {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  &-title {
+    line-height: 1.1;
+    // font-size: 14%; //60~180
+    font-size: calc(3.75rem + ((1vw - 3.75px) * 13.2597)); //60~180
+    font-family: 'objectivebold_italic';
+    color: var.$colorMain;
+    transform: translateY(-50%);
+    white-space: nowrap;
+    &__inner {
+      position: relative;
+      .polite.js_target_h {
+        opacity: 0;
+        transform: translateX(-50%);
+        transition: 1s;
+        &.show {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .nice.js_target_h {
+        opacity: 0;
+        transform: translateX(50%);
+        transition: 1s;
+        &.show {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    }
+  }
+}

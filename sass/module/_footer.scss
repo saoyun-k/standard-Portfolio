@@ -1,0 +1,9 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+
+.footer {
+  height: vp.convertVh(346px, 1280px);
+  background-color: var.$colorMain;
+}

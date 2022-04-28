@@ -1,0 +1,43 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+
+$sectionNames: (
+  'sk': "Skills",
+  'wk': "Works",
+  'hs': "History"
+);
+
+.section-title {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(1.5rem + ((1vw - 3.75px) * 3.9779)); //24~60
+  font-family: 'objectivebold_italic';
+  color: var.$colorBlack;
+  &.js_target {
+    opacity: 0;
+    transition: 1s;
+    &.show {
+      opacity: 1;
+    }
+  }
+  @each $sectionName, $content in $sectionNames {
+    
+    &.h3-#{$sectionName}::after {
+      content: $content;
+      z-index: -1;
+      display: block;
+      color: var.$colorLightGray;
+      transform: translate(4%, -110%);
+      text-shadow: var.$colorMain 1px 1px, var.$colorMain -1px -1px, 
+      var.$colorMain -1px 1px, var.$colorMain 1px -1px, 
+      var.$colorMain 0px 1px, var.$colorMain 0px -1px, 
+      var.$colorMain -1px 0px, var.$colorMain 1px 0px; 
+    }
+  }
+  &.h3-wk::after, .h3-hs::after {
+    color: var.$colorWhite;
+  }
+}

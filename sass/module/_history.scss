@@ -1,0 +1,50 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+.history {
+  @include sp.sitePaddingBase(270px, 232px, 163px, 232px);
+}
+
+.history-table {
+  margin-top: vp.convertVw(116px, 1280px);
+  border-collapse: separate;
+  border-spacing: vp.convertVw(25px, 1280px) 0;
+  &.js_target {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+    &.show {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  &__row {
+    line-height: 2;
+    font-size: var.$FontSizeSmall;
+    font-family: 'objectivebold_italic';
+    color: var.$colorMain;
+    @include madia.deviceBreakPointMax(600px) {
+      font-size: 1.2rem;
+    }
+    &-header {
+      @include sp.sitePaddingBase(37px, 0px, 34px, 69px);
+    }
+    &-header:not(:last-child) {
+      border-top: solid 1px var.$colorMain;
+    }
+    &-data {
+      margin-left: vp.convertVw(25px, 1280px);
+      @include sp.sitePaddingBase(34px, 0px, 34px, 0px);
+      color: #222222;
+      &:not(:nth-of-type(4)) {
+        border-top: solid 1px var.$colorGray;
+      }
+    }
+  }
+}

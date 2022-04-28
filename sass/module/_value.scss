@@ -1,0 +1,91 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward  "../mixin/site-padding";
+@use "../mixin/site-padding" as sp;
+@forward  "../mixin/font-noto";
+@use "../mixin/font-noto" as fn;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+
+.value {
+  @include sp.sitePaddingBase(224px, 0px, 0px, 0px);
+  @include fn.fontNotoMedium;
+  color: var.$colorWhite;
+  background-color: #262626;
+  &.js_target {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: 1s;
+    &.show {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+.value-content {
+  width: vp.convertVw(671px, 1280px);
+  margin: 0 auto;
+  &__title {
+    text-align: center;
+    font-size: calc(0.625rem + ((1vw - 3.75px) * 1.547)); //10~24
+    font-family: 'objectivebold_italic';
+    color: var.$colorMain;
+  }
+  &__pr {
+    margin-top: vp.convertVw(44px, 1280px);
+    line-height: 1.2;
+    font-size: calc(1.1875rem + ((1vw - 3.75px) * 3.2044)); //19~48
+  }
+  &:nth-of-type(2) {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    @include sp.sitePaddingBase(206px, 0px, 185px, 0px);
+    background-image: url(../images/value.png);
+    background-size: cover;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(38, 38, 38, .91);
+    }
+    .value-content__item {
+      position: relative;
+      z-index: 1;
+      width: vp.convertPercent(816px, 1280px);
+      line-height: 2;
+      font-size: var.$FontSizeSmall; //8~20
+      &.js_target {
+        opacity: 0;
+        transition: 1s;
+        &.show {
+          opacity: 1;
+        }
+      }
+      &-text:last-child {
+        margin-top: 1em;
+      }
+      @include madia.deviceBreakPointMax(600px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+.slider {
+  display: flex;
+  margin-top: vp.convertVw(130px, 1280px);
+  &-item {
+    max-width: vp.convertVw(733px, 1280px);
+  }
+}

@@ -1,0 +1,41 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+html {
+  // visibility: hidden;
+  // &.wf-active {
+  //   visibility: visible;
+  // }
+  @include madia.deviceBreakPointMax(600px) {
+    font-size: 75%;
+  }
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  min-width: 375px;
+  font-family: 'objectivebold_italic';
+  background-color: var.$colorWhite;
+}
+
+main {
+  position: relative;
+}
+
+strong {
+  margin-left: vp.convertVw(27px, 1280px);
+  font-size: calc(1.875rem + ((1vw - 3.75px) * 7.7348)); //30~100
+  font-family: 'objectivebold_italic';
+  color: var.$colorBlack;
+}
+
+.wrapper {
+  overflow: hidden;
+}

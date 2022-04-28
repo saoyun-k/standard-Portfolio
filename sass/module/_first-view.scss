@@ -1,0 +1,19 @@
+@forward "../config/variables";
+@use "../config/variables" as var;
+@forward  "../function/convert-vp";
+@use "../function/convert-vp" as vp;
+@forward "../mixin/madia";
+@use "../mixin/madia";
+
+.first-view {
+  position: relative;
+  .first-view__content {
+    width: 100%;
+    height: vp.convertVh(578px, 1280px);
+    .video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  } 
+}
